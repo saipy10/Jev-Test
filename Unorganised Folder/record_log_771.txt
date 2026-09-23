@@ -1,0 +1,8 @@
+Database Query Optimization and Indexing Latency Diagnostics
+============================================================
+
+Performance trace of read-heavy relational database replicas encountering lock contention under peak concurrency.
+
+Adding composite B-tree indexes and partitioning historical log tables by timestamp reduced 99th percentile query latency from 840ms to 24ms.
+
+Recommended configuration flags include increased buffer cache pools and connection pooling thresholds.

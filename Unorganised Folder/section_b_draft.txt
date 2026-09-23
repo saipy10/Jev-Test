@@ -1,0 +1,8 @@
+Arbitration Protocol and Regulatory Enforcement Memorandum
+==========================================================
+
+Draft language outlining binding arbitration procedures under international commercial dispute resolution rules.
+
+Parties agree that arbitral awards shall be final, enforceable in any court of competent jurisdiction under the New York Convention.
+
+Discovery scope is restricted to direct documentary evidence with a mandatory 45-day pre-hearing deposition ceiling.
