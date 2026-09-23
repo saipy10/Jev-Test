@@ -6,18 +6,13 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
 
-API_URL = "https://openrouter.ai/api/alpha/decisions"
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
 API_KEY = ""
-MODEL = "~typesafe/jev-latest"
+MODEL = "nvidia/nemotron-3.5-lightning:free"
+FALLBACK_MODEL = "nvidia/nemotron-3.5-lightning"
 
+CATEGORIES = ["Education", "Finance", "Law", "Technology"]
 SESSION = requests.Session()
-
-CATEGORIES = {
-    "Education": "Curriculum, teaching pedagogy, student engagement, academic study, syllabus, schools",
-    "Finance": "Financial analysis, investments, budget, cash flow, EBITDA, working capital, credit, treasury",
-    "Law": "Legal statutes, contracts, dispute arbitration, litigation, liability, jurisdiction, compliance",
-    "Technology": "Software architecture, microservices, databases, infrastructure, cryptography, cloud systems",
-}
 
 
 def extract_text_from_txt(path: Path) -> str:
@@ -43,7 +38,6 @@ def extract_text_from_pdf(path: Path) -> str:
     try:
         raw_bytes = path.read_bytes()
         content = raw_bytes.decode("latin-1", errors="ignore")
-        # Extract strings from PDF text streams
         matches = re.findall(r"\((.*?)\)\s*(?:'|\"|Tj)", content)
         if matches:
             cleaned = [
@@ -51,7 +45,6 @@ def extract_text_from_pdf(path: Path) -> str:
                 for m in matches
             ]
             return " ".join(cleaned)
-        # Fallback regex for ASCII text blocks
         words = re.findall(r"[A-Za-z]{3,}", content)
         return " ".join(words)
     except Exception as e:
@@ -69,48 +62,105 @@ def extract_file_content(path: Path) -> str:
     elif suffix == ".pdf":
         return extract_text_from_pdf(path)
     else:
-        # Fallback attempt as text
         try:
             return path.read_text(encoding="utf-8", errors="ignore")
         except Exception:
             return ""
 
 
-def classify_document(text: str) -> tuple[str, dict]:
-    """Classify text using OpenRouter Decisions API (~typesafe/jev-latest)."""
-    sample_text = text[:3000].strip()
-    if not sample_text:
-        return "Unclassified", {}
+import time
 
-    payload = {
-        "model": MODEL,
-        "state": sample_text,
-        "questions": {
-            "category": {
-                "type": "choice",
-                "instructions": "Which topic category does this document belong to?",
-                "criteria": CATEGORIES,
-            }
-        },
-    }
-
+def call_chat_completion(model_name: str, sample_text: str, timeout: int = 15, max_retries: int = 3) -> dict:
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
     }
+    payload = {
+        "model": model_name,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are an expert document classification assistant. "
+                    "Analyze the provided document text and classify it into exactly ONE of the following categories: "
+                    "Education, Finance, Law, Technology.\n"
+                    "Provide your decision strictly in the format: Category: <CategoryName>"
+                ),
+            },
+            {
+                "role": "user",
+                "content": f"Document content snippet:\n{sample_text}\n\nWhich category does this belong to?",
+            },
+        ],
+        "reasoning": {"enabled": False},
+    }
 
-    response = SESSION.post(API_URL, headers=headers, json=payload, timeout=30)
-    response.raise_for_status()
-    data = response.json()
+    for attempt in range(max_retries):
+        try:
+            response = SESSION.post(API_URL, headers=headers, json=payload, timeout=timeout)
+            if response.status_code == 429:
+                # Rate limit encountered - wait with exponential backoff
+                wait_sec = 2 * (attempt + 1)
+                time.sleep(wait_sec)
+                continue
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            if attempt == max_retries - 1:
+                raise
+            time.sleep(1.5 * (attempt + 1))
 
-    category_info = data.get("answers", {}).get("category", {})
-    choice = category_info.get("choice", "Unclassified")
-    probabilities = category_info.get("probabilities", {})
-    return choice, probabilities
+
+_USE_FALLBACK = False
+
+def classify_document_llm(text: str) -> tuple[str, str, dict]:
+    """Classify document using Chat Completions with reasoning, trying MODEL first then FALLBACK_MODEL."""
+    global _USE_FALLBACK
+    sample_text = text[:2500].strip()
+    if not sample_text:
+        return "Unclassified", "Empty text", {}
+
+    data = None
+
+    # Try primary model (nvidia/nemotron-3.5-lightning:free) if not marked down
+    if not _USE_FALLBACK:
+        try:
+            data = call_chat_completion(MODEL, sample_text, timeout=3, max_retries=1)
+        except Exception:
+            _USE_FALLBACK = True
+
+    # Use fallback model if primary is down/slow
+    if data is None:
+        try:
+            data = call_chat_completion(FALLBACK_MODEL, sample_text, timeout=20)
+        except Exception as e:
+            return "Unclassified", f"Error: {e}", {}
+
+    choices = data.get("choices", [])
+    if not choices:
+        return "Unclassified", "No response choices returned", data.get("usage", {})
+
+    message = choices[0].get("message", {})
+    content = message.get("content", "")
+    reasoning = message.get("reasoning_details") or message.get("reasoning") or ""
+
+    # Parse Category from content
+    match = re.search(r"Category:\s*(Education|Finance|Law|Technology)", content, re.IGNORECASE)
+    if match:
+        category = match.group(1).capitalize()
+    else:
+        # Fallback keyword match in the generated answer
+        category = "Unclassified"
+        for cat in CATEGORIES:
+            if re.search(rf"\b{cat}\b", content, re.IGNORECASE):
+                category = cat
+                break
+
+    return category, str(reasoning)[:150], data.get("usage", {})
 
 
 def organize_unorganised_folder(target_dir: Path):
-    """Scan Unorganised Folder, classify documents by content, and sort into subfolders."""
+    """Scan Unorganised Folder, classify documents with the LLM, and move into subfolders."""
     if not target_dir.exists() or not target_dir.is_dir():
         print(f"Directory '{target_dir}' does not exist.")
         return
@@ -125,14 +175,14 @@ def organize_unorganised_folder(target_dir: Path):
         print("No files found to organize in the folder.")
         return
 
-    print(f"Found {len(items_to_process)} file(s) to classify and organize...\n")
+    print(f"Found {len(items_to_process)} file(s) to classify using '{MODEL}'...\n")
     results = {cat: [] for cat in CATEGORIES}
     results["Unclassified"] = []
 
     for item in items_to_process:
         print(f"Analyzing content of '{item.name}'...")
         content = extract_file_content(item)
-        category, probabilities = classify_document(content)
+        category, reasoning_snippet, usage = classify_document_llm(content)
 
         if category not in CATEGORIES:
             category = "Unclassified"
@@ -141,7 +191,7 @@ def organize_unorganised_folder(target_dir: Path):
         destination_folder = target_dir / category
         destination_path = destination_folder / item.name
 
-        # Avoid collision
+        # Prevent overwriting
         if destination_path.exists():
             stem, suffix = item.stem, item.suffix
             counter = 1
@@ -152,8 +202,9 @@ def organize_unorganised_folder(target_dir: Path):
         shutil.move(str(item), str(destination_path))
         results[category].append(item.name)
 
-        prob_str = ", ".join(f"{k}: {v:.2f}" for k, v in probabilities.items()) if probabilities else "N/A"
-        print(f" -> Classified as: [{category}] (Probabilities: {prob_str})")
+        print(f" -> Classified as: [{category}]")
+        if reasoning_snippet:
+            print(f"    Reasoning: {reasoning_snippet.strip()}...")
         print(f" -> Moved to: '{category}/{destination_path.name}'\n")
 
     print("=================== SUMMARY ===================")
@@ -168,7 +219,8 @@ def organize_unorganised_folder(target_dir: Path):
 def main():
     base_dir = Path(__file__).resolve().parent
     unorganised_folder = base_dir / "Unorganised Folder"
-    print(f"Starting organization for: {unorganised_folder}\n")
+    print(f"Starting organization for: {unorganised_folder}")
+    print(f"Model: {MODEL} (Fallback: {FALLBACK_MODEL})\n")
     organize_unorganised_folder(unorganised_folder)
 
 
