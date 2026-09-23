@@ -4,48 +4,134 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R] /Count 3 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<< /Length 533 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 1345 >>
 stream
 BT
-/F1 11 Tf
-15 TL
-50 740 Td
-(QUARTERLY WORKING CAPITAL AND CASH FLOW PROJECTIONS) '
+/F1 10 Tf
+13 TL
+45 745 Td
+(TREASURY AND CORPORATE FINANCE STRATEGIC MEMORANDUM) '
 () '
-(Operating cash flow grew by 8.4% quarter-over-quarter driven by) '
-(faster days sales outstanding \(DSO\) collections.) '
+(Ref: TC-FIN-2026-402 | Distribution: Executive Committee & Audit) '
+(Board) '
 () '
-(Capital expenditure allocations for automated warehouse) '
-(fulfillment remain within the projected variance threshold of) '
-(plus or minus 3.2%.) '
+(1. EXECUTIVE SUMMARY: LIQUIDITY PROFILE AND WORKING CAPITAL) '
 () '
-(Treasury recommends refinancing short-term commercial paper into) '
-(long-term senior unsecured notes to preserve debt service) '
-(coverage ratios.) '
+(This memorandum establishes the updated treasury capital forecast) '
+(for the upcoming fiscal quarters. Consolidated operating cash flow) '
+(rose 11.2% year-over-year to $86.4 million, driven primarily by) '
+(optimized accounts receivable collections and rigorous inventory) '
+(turnover controls across regional fulfillment centers.) '
+() '
+(Cash and cash equivalents, including marketable short-term) '
+(securities, total $142.8 million. Unutilized capacity under our) '
+(syndicated revolving credit facility stands at $75.0 million with a) '
+(consortium of five tier-one financial institutions, expiring) '
+(December 2028.) '
+() '
+(2. CASH CONVERSION CYCLE \(CCC\) METRICS AND OPTIMIZATION) '
+() '
+(Days Sales Outstanding \(DSO\) improved from 48.2 days to 39.5 days) '
+(following automated invoice dispute workflows. Days Inventory) '
+(Outstanding \(DIO\) reduced from 62.1 days to 54.0 days through) '
+(predictive just-in-time replenishment. Days Payable Outstanding) '
+(\(DPO\) was renegotiated to 60.0 days with core tier-1 vendors,) '
+(generating a net CCC compression of 16.8 days.) '
 () '
 ET
 
 endstream
 endobj
-5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 959 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+45 745 Td
+(3. CAPITAL EXPENDITURE \(CAPEX\) ALLOCATION AND DISCIPLINE) '
+() '
+(Total CapEx expenditures for the fiscal year are budgeted at $38.5) '
+(million. Growth CapEx accounts for 68% of expenditures, dedicated to) '
+(automated warehouse robotics, high-throughput conveyor systems, and) '
+(enterprise cloud migrations.) '
+() '
+(Maintenance CapEx is capped at $12.3 million, strictly audited under) '
+(our internal hurdle rate requirement of 15% Internal Rate of Return) '
+(\(IRR\) with a maximum payback period of 36 months.) '
+() '
+(4. DEBT MATURITY PROFILE AND INTEREST RATE RISK MANAGEMENT) '
+() '
+(Our capital structure consists of $110.0 million in 5.25% senior) '
+(unsecured notes maturing in 2029 and $45.0 million in term loan) '
+(facilities. Currently, 85% of total outstanding debt is fixed or) '
+(synthetically hedged via floating-to-fixed interest rate swaps at a) '
+(blended effective cost of capital of 4.88%.) '
+() '
+ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 9 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+9 0 obj
+<< /Length 783 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+45 745 Td
+(5. TREASURY POLICY DIRECTIVES AND SHAREHOLDER RETURNS) '
+() '
+(The treasury department recommends the following policy actions for) '
+(adoption by the Board of Directors:) '
+() '
+(- Allocate $25.0 million toward programmatic share repurchase) '
+(tranches during valuation dips below 12x EV/EBITDA.) '
+() '
+(- Maintain a permanent liquidity floor of $60.0 million in) '
+(unencumbered cash and overnight repo paper.) '
+() '
+(- Complete refinancing of expiring credit tranches 18 months prior) '
+(to final maturity dates.) '
+() '
+(- Maintain net debt-to-adjusted EBITDA leverage below 1.75x across) '
+(all operating scenarios.) '
+() '
+(- Implement dynamic cash sweep protocols across subsidiary banking) '
+(accounts to optimize overnight yield.) '
+() '
+ET
+
+endstream
 endobj
 xref
-0 6
+0 10
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000831 00000 n 
+0000000133 00000 n 
+0000000203 00000 n 
+0000000329 00000 n 
+0000001726 00000 n 
+0000001852 00000 n 
+0000002862 00000 n 
+0000002988 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 10 /Root 1 0 R >>
 startxref
-901
+3822
 %%EOF

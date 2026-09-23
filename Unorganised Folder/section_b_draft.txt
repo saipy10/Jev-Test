@@ -1,8 +1,35 @@
-Arbitration Protocol and Regulatory Enforcement Memorandum
-==========================================================
+International Commercial Dispute Resolution: Binding Arbitration Agreement, Lex Arbitri, and New York Convention Protocols
+==========================================================================================================================
 
-Draft language outlining binding arbitration procedures under international commercial dispute resolution rules.
+## Article I: Agreement to Arbitrate and Scope of Arbitrable Claims
+-------------------------------------------------------------------
 
-Parties agree that arbitral awards shall be final, enforceable in any court of competent jurisdiction under the New York Convention.
+Any dispute, controversy, difference, or claim arising out of or relating to this Contract, including the existence, validity, interpretation, performance, breach, or termination thereof, or any dispute regarding non-contractual obligations arising out of or relating to it, shall be referred to and finally resolved by international arbitration.
 
-Discovery scope is restricted to direct documentary evidence with a mandatory 45-day pre-hearing deposition ceiling.
+The parties expressly agree that questions of arbitrability, including challenges to the jurisdiction of the arbitral tribunal and the validity of the arbitration agreement itself (doctrine of separability), shall be determined solely by the arbitral tribunal.
+
+  * Universal coverage extending to statutory, tort, and equitable claims.
+  * Waiver of sovereign immunity defenses for state-affiliated contracting entities.
+  * Mutual waiver of class action arbitration and consolidated multi-party joinder without consent.
+
+## Article II: Composition of Tribunal, Seat, and Procedural Rules
+------------------------------------------------------------------
+
+The arbitration shall be conducted in accordance with the International Chamber of Commerce (ICC) Rules of Arbitration in force when the Notice of Arbitration is submitted. The number of arbitrators shall be three. Each party shall nominate one co-arbitrator, and the two party-appointed arbitrators shall jointly nominate the presiding arbitrator within thirty days.
+
+The legal seat and place of arbitration shall be London, United Kingdom. The procedural law (lex arbitri) governing the arbitration shall be the English Arbitration Act 1996. The language of all written submissions and oral hearings shall be English.
+
+  * Presiding arbitrator must possess at least 15 years of commercial law experience.
+  * Emergency arbitrator provisions under Appendix V of the ICC Rules shall remain applicable.
+  * Hearings may be conducted via secure videoconferencing upon agreement of tribunal and parties.
+
+## Article III: Evidentiary Principles and New York Convention Enforcement
+--------------------------------------------------------------------------
+
+The tribunal shall be guided by the IBA Rules on the Taking of Evidence in International Arbitration. Discovery shall be limited to targeted document production requests meeting strict materiality and relevance criteria. Broad US-style discovery, interrogatories, and depositions are expressly excluded.
+
+Any arbitral award rendered shall be final and binding upon the parties. The parties agree to carry out the award without delay and waive irrevocably any rights of appeal or recourse against the award. Judgment upon the award may be entered and enforced in any court of competent jurisdiction under the 1958 United Nations Convention on the Recognition and Enforcement of Foreign Arbitral Awards (The New York Convention).
+
+  * Tribunal has authority to award legal costs, tribunal fees, and pre-award interest.
+  * Strict confidentiality applies to all submissions, awards, and proceedings.
+  * Waiver of punitive and exemplary damages; awards limited to compensatory relief.

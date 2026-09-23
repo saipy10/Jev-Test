@@ -4,46 +4,135 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R] /Count 3 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<< /Length 471 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 1353 >>
 stream
 BT
-/F1 11 Tf
-15 TL
-50 740 Td
-(ZERO-TRUST INFRASTRUCTURE AND CRYPTOGRAPHIC KEY MANAGEMENT) '
+/F1 10 Tf
+13 TL
+45 745 Td
+(ZERO-TRUST CYBERSECURITY INFRASTRUCTURE DOSSIER) '
 () '
-(Implementation blueprint for end-to-end mutual TLS authentication) '
-(across service mesh boundaries.) '
+(Classification: Enterprise Security Operations | Doc Ref: SEC-) '
+(ENG-774) '
 () '
-(Hardware security modules \(HSM\) manage root-of-trust rotation on) '
-(a 90-day automated schedule without service disruption.) '
+(1. ZERO-TRUST PERIMETER AND IDENTITY ATTESTATION) '
 () '
-(Latency benchmarks demonstrate an overhead of less than 2.4) '
-(milliseconds per encrypted inter-service RPC call.) '
+(Traditional castle-and-moat perimeter security is fundamentally) '
+(incapable of neutralizing insider threats, credential compromise,) '
+(and lateral network traversal. This architecture mandates zero-trust) '
+(verification: every request, whether originating inside or outside) '
+(the corporate network, must be explicitly authenticated, authorized,) '
+(and encrypted.) '
+() '
+(Workload identity attestation is enforced through short-lived) '
+(cryptographic tokens issued via OpenID Connect \(OIDC\) integrated) '
+(with hardware TPM 2.0 chips on host nodes. Context-aware access) '
+(policies evaluate device posture, geographic anomaly scores, and) '
+(endpoint threat telemetry before granting transient access rights.) '
+() '
+(2. MUTUAL TLS \(mTLS\) ENCRYPTION AND SERVICE-TO-SERVICE AUTH) '
+() '
+(All intra-cluster and inter-cluster traffic is encrypted using TLS) '
+(1.3 with ChaCha20-Poly1305 and AES-256-GCM cipher suites. Ephemeral) '
+(client and server certificates are rotated automatically every 24) '
+(hours via automated service mesh sidecars, eliminating risks) '
+(associated with stale credentials.) '
 () '
 ET
 
 endstream
 endobj
-5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 1057 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+45 745 Td
+(3. CRYPTOGRAPHIC ROOT OF TRUST AND HSM KEY LIFECYCLE) '
+() '
+(All primary cryptographic keys, master certificate authorities, and) '
+(database encryption keys are generated and stored within FIPS 140-3) '
+(Level 3 validated Hardware Security Modules \(HSMs\). Key material) '
+(never leaves the secure cryptographic boundary in plaintext.) '
+() '
+(Key rotation schedules are strictly automated: root master keys) '
+(rotate every 365 days; intermediate signing keys rotate every 90) '
+(days; data encryption keys \(DEKs\) are envelope-encrypted by Key) '
+(Encryption Keys \(KEKs\) and rotated per customer data boundary.) '
+() '
+(4. RUNTIME CONTAINER DEFENSE AND EPBF SECURITY OBSERVABILITY) '
+() '
+(Runtime security monitoring leverages eBPF probes in the Linux) '
+(kernel to intercept system calls \(e.g., execve, connect, ptrace\) in) '
+(real time. Anomalous binary execution, unauthorized socket binding,) '
+(or file integrity modifications trigger immediate container) '
+(isolation and forensic memory snapshots.) '
+() '
+ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 9 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+9 0 obj
+<< /Length 829 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+45 745 Td
+(5. INCIDENT RESPONSE WORKFLOWS AND AUDIT REMEDIATION ROADMAP) '
+() '
+(The cybersecurity engineering council directs implementation of the) '
+(following enterprise hardening protocols:) '
+() '
+(- Enforce Phishing-Resistant FIDO2/WebAuthn multi-factor) '
+(authentication across all privileged access vectors.) '
+() '
+(- Deploy continuous Automated Red Team \(ART\) adversarial simulation) '
+(agents across multi-cloud infrastructure.) '
+() '
+(- Implement dynamic data loss prevention \(DLP\) filters intercepting) '
+(API payloads containing PII/PCI strings.) '
+() '
+(- Complete SOC 2 Type II, ISO 27001:2022, and FedRAMP High) '
+(certification renewals annually.) '
+() '
+(- Maintain immutable append-only SIEM audit logs with 365-day) '
+(retention in write-once-read-many \(WORM\) storage.) '
+() '
+ET
+
+endstream
 endobj
 xref
-0 6
+0 10
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000769 00000 n 
+0000000133 00000 n 
+0000000203 00000 n 
+0000000329 00000 n 
+0000001734 00000 n 
+0000001860 00000 n 
+0000002969 00000 n 
+0000003095 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 10 /Root 1 0 R >>
 startxref
-839
+3975
 %%EOF

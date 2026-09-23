@@ -1,8 +1,39 @@
-EBITDA Margin Reconciliation and Budget Variance
-================================================
+Fiscal Financial Performance: Consolidated EBITDA Reconciliation, Operating Margins, and Variance Analysis
+==========================================================================================================
 
-Reconciliation of adjusted EBITDA against initial annual budget forecasts across all operational business units.
+## Consolidated Financial Performance and Operating Revenue Breakdown
+---------------------------------------------------------------------
 
-Gross margin expansion was primarily bolstered by raw material procurement savings and favorable foreign exchange currency hedging.
+Fiscal revenue closed at $314.8 million, representing an 8.7% organic growth trajectory over the preceding fiscal period. Gross profit reached $138.5 million, reflecting a gross margin of 44.0% compared to 42.1% in the prior year.
 
-Unallocated contingency reserves stand at 4.2 million dollars, subject to audit board reconciliation in the forthcoming close.
+Revenue growth was propelled by recurring subscription software revenue (+24.2% YoY) and aftermarket high-margin services (+14.0% YoY), offsetting modest declines in commoditized hardware sales.
+
+  * Enterprise software segment revenue: $148.2 million (47.1% of total).
+  * Managed technical services: $92.4 million (29.3% of total).
+  * Hardware infrastructure products: $74.2 million (23.6% of total).
+
+## Adjusted EBITDA Reconciliation and Non-GAAP Adjustments
+----------------------------------------------------------
+
+GAAP Net Income for the fiscal year was $28.4 million. In accordance with standard financial disclosure practices, non-operating, non-cash, and one-time restructuring items are reconciled below to determine Adjusted EBITDA.
+
+Consolidated Adjusted EBITDA reached $64.2 million, delivering an Adjusted EBITDA margin of 20.4%, an expansion of 180 basis points over the comparative baseline.
+
+  * GAAP Net Operating Income: $28,420,000
+  * Provision for Income Taxes: $7,850,000
+  * Depreciation and Asset Amortization: $18,400,000
+  * Net Interest Expense and Financing Charges: $4,920,000
+  * Stock-Based Non-Cash Equity Compensation: $3,210,000
+  * One-Time Facility Consolidation & Severance: $1,400,000
+  * Total Adjusted EBITDA: $64,200,000
+
+## Operating Expense (OpEx) Efficiency and Variance Diagnostics
+---------------------------------------------------------------
+
+Research and development expenditures were $32.1 million (10.2% of revenue), funding next-generation multi-tenant platform microservices. Sales and marketing expenses contracted to 16.4% of revenue, down from 18.2%, following direct-sales channel restructuring.
+
+General and Administrative (G&A) overhead remained lean at 7.0% of revenue, achieving enterprise target benchmarks through centralized automated accounting and procurement consolidation.
+
+  * Favorable material price variance: +$2.4 million due to bulk contract locks.
+  * Unfavorable labor overtime variance: -$1.1 million in peak fulfillment quarters.
+  * Projected Free Cash Flow conversion rate: 78% of Adjusted EBITDA.
