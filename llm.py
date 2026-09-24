@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
-API_KEY = ""
+API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 MODEL = "nvidia/nemotron-3.5-lightning:free"
 FALLBACK_MODEL = "nvidia/nemotron-3.5-lightning"
 

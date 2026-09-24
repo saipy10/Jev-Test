@@ -11,8 +11,9 @@ import llm
 BASE_DIR = Path(__file__).resolve().parent
 UNORGANISED_DIR = BASE_DIR / "Unorganised Folder"
 
-# Ground truth mapping for the 12 documents in Unorganised Folder
+# Ground truth mapping for the documents in Unorganised Folder
 GROUND_TRUTH = {
+    # Original 12 documents
     "archive_entry_04.docx": "Education",
     "status_review_nov.pdf": "Education",
     "field_observation_14.txt": "Education",
@@ -25,6 +26,20 @@ GROUND_TRUTH = {
     "project_nexus_v1.docx": "Technology",
     "dossier_part_4.pdf": "Technology",
     "record_log_771.txt": "Technology",
+
+    # 12 New Lengthy documents
+    "curriculum_standards_2026.txt": "Education",
+    "faculty_symposium_proceedings.docx": "Education",
+    "pedagogical_assessment_report.pdf": "Education",
+    "quarterly_treasury_audit.txt": "Finance",
+    "consolidated_financial_statement.docx": "Finance",
+    "portfolio_risk_disclosure.pdf": "Finance",
+    "appellate_brief_in_re_tech.txt": "Law",
+    "master_services_agreement.docx": "Law",
+    "statutory_compliance_filing.pdf": "Law",
+    "distributed_systems_architecture.txt": "Technology",
+    "cloud_infrastructure_blueprint.docx": "Technology",
+    "cybersecurity_threat_model.pdf": "Technology",
 }
 
 
@@ -334,3 +349,165 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# =============================================================================
+# SECTION: ON 12 FILES
+# =============================================================================
+r"""
+RESULTS ON 12 FILES:
+
+==============================================================================
+                WARMED PERFORMANCE BENCHMARK: LLM.PY vs JEV.PY                
+==============================================================================
+Target Directory: F:\Project\Demo\Unorganised Folder
+Loaded 12 files into memory.
+
+==============================================================================
+                 PRE-BENCHMARK NETWORK & WORKER WARMUP PHASE                  
+==============================================================================
+Pre-warming sockets to eliminate cold-start / TLS handshake penalties...
+
+  [1/2] Warming up jev.py (~typesafe/jev-latest Decisions API)...
+        -> TLS Handshake & Socket warmed in 7.248s (Response: Education)
+  [2/2] Warming up llm.py (nvidia/nemotron-3.5-lightning Chat Completions)...
+        -> TLS Handshake & Socket warmed in 29.527s (Response: Technology)
+
+Network sockets and cloud GPU workers are fully primed! Starting timed benchmarks.
+==============================================================================
+
+******************************************************************************
+        [SEQUENCE 1] EVALUATING LLM.PY FIRST, THEN JEV.PY (PRE-WARMED)        
+******************************************************************************
+
+>>> Running Benchmark: [llm.py (1st)] (nvidia/nemotron-3.5-lightning Chat Completions)
+  [appendix_notes_c.docx   ] -> Finance     | Latency:  7.897s | CORRECT
+  [archive_entry_04.docx   ] -> Education   | Latency: 22.194s | CORRECT
+  [briefing_packet_09.pdf  ] -> Law         | Latency:  1.683s | CORRECT
+  [dossier_part_4.pdf      ] -> Technology  | Latency: 43.920s | CORRECT
+  [field_observation_14.txt] -> Education   | Latency:  6.503s | CORRECT
+  [internal_memo_402.pdf   ] -> Finance     | Latency:  7.374s | CORRECT
+  [metrics_packet_88.txt   ] -> Finance     | Latency: 24.590s | CORRECT
+  [project_nexus_v1.docx   ] -> Technology  | Latency:  2.520s | CORRECT
+  [record_log_771.txt      ] -> Technology  | Latency:  1.264s | CORRECT
+  [section_b_draft.txt     ] -> Law         | Latency:  5.282s | CORRECT
+  [status_review_nov.pdf   ] -> Education   | Latency:  3.775s | CORRECT
+  [summary_digest_05.docx  ] -> Law         | Latency:  1.677s | CORRECT
+
+>>> Running Benchmark: [jev.py (2nd)] (~typesafe/jev-latest Decisions API)
+  [appendix_notes_c.docx   ] -> Finance     | Latency:  1.222s | CORRECT
+  [archive_entry_04.docx   ] -> Education   | Latency:  1.493s | CORRECT
+  [briefing_packet_09.pdf  ] -> Law         | Latency:  1.264s | CORRECT
+  [dossier_part_4.pdf      ] -> Technology  | Latency:  1.465s | CORRECT
+  [field_observation_14.txt] -> Education   | Latency:  0.837s | CORRECT
+  [internal_memo_402.pdf   ] -> Finance     | Latency:  1.265s | CORRECT
+  [metrics_packet_88.txt   ] -> Finance     | Latency:  1.259s | CORRECT
+  [project_nexus_v1.docx   ] -> Technology  | Latency:  0.841s | CORRECT
+  [record_log_771.txt      ] -> Technology  | Latency:  0.631s | CORRECT
+  [section_b_draft.txt     ] -> Law         | Latency:  0.636s | CORRECT
+  [status_review_nov.pdf   ] -> Education   | Latency:  0.635s | CORRECT
+  [summary_digest_05.docx  ] -> Law         | Latency:  0.853s | CORRECT
+
+==============================================================================
+                     SEQUENCE 1: LLM FIRST vs JEV SECOND                      
+==============================================================================
+Metric                           | llm.py (1st)         | jev.py (2nd)        
+------------------------------------------------------------------------------
+Model / API Endpoint             | nvidia/nemotron-3.5-lightning:free | ~typesafe/jev-latest
+Total Elapsed Time               | 128.680 s            | 12.403 s            
+Mean Latency / Doc               | 10.723 s             | 1.033 s             
+Median Latency / Doc             | 5.892 s              | 1.037 s             
+Min Latency                      | 1.264 s              | 0.631 s             
+Max Latency                      | 43.920 s             | 1.493 s             
+Latency Std Dev                  | 13.008 s             | 0.327 s             
+Throughput                       | 0.09 docs/sec        | 0.97 docs/sec       
+Classification Accuracy          | 100.0%               | 100.0%              
+==============================================================================
+
+Cooldown pause (2 seconds) before Sequence 2...
+
+******************************************************************************
+        [SEQUENCE 2] EVALUATING JEV.PY FIRST, THEN LLM.PY (PRE-WARMED)        
+******************************************************************************
+
+>>> Running Benchmark: [jev.py (1st)] (~typesafe/jev-latest Decisions API)
+  [appendix_notes_c.docx   ] -> Finance     | Latency:  1.180s | CORRECT
+  [archive_entry_04.docx   ] -> Education   | Latency:  0.629s | CORRECT
+  [briefing_packet_09.pdf  ] -> Law         | Latency:  0.632s | CORRECT
+  [dossier_part_4.pdf      ] -> Technology  | Latency:  0.853s | CORRECT
+  [field_observation_14.txt] -> Education   | Latency:  0.627s | CORRECT
+  [internal_memo_402.pdf   ] -> Finance     | Latency:  0.837s | CORRECT
+  [metrics_packet_88.txt   ] -> Finance     | Latency:  0.838s | CORRECT
+  [project_nexus_v1.docx   ] -> Technology  | Latency:  0.844s | CORRECT
+  [record_log_771.txt      ] -> Technology  | Latency:  0.633s | CORRECT
+  [section_b_draft.txt     ] -> Law         | Latency:  0.844s | CORRECT
+  [status_review_nov.pdf   ] -> Education   | Latency:  0.636s | CORRECT
+  [summary_digest_05.docx  ] -> Law         | Latency:  0.632s | CORRECT
+
+>>> Running Benchmark: [llm.py (2nd)] (nvidia/nemotron-3.5-lightning Chat Completions)
+  [appendix_notes_c.docx   ] -> Finance     | Latency:  3.216s | CORRECT
+  [archive_entry_04.docx   ] -> Education   | Latency: 20.774s | CORRECT
+  [briefing_packet_09.pdf  ] -> Law         | Latency:  2.541s | CORRECT
+  [dossier_part_4.pdf      ] -> Technology  | Latency:  9.571s | CORRECT
+  [field_observation_14.txt] -> Education   | Latency:  7.622s | CORRECT
+  [internal_memo_402.pdf   ] -> Finance     | Latency: 21.732s | CORRECT
+  [metrics_packet_88.txt   ] -> Finance     | Latency:  5.924s | CORRECT
+  [project_nexus_v1.docx   ] -> Technology  | Latency: 44.211s | CORRECT
+  [record_log_771.txt      ] -> Technology  | Latency:  4.724s | CORRECT
+  [section_b_draft.txt     ] -> Law         | Latency:  4.839s | CORRECT
+  [status_review_nov.pdf   ] -> Education   | Latency:  8.201s | CORRECT
+  [summary_digest_05.docx  ] -> Law         | Latency:  3.581s | CORRECT
+
+==============================================================================
+                     SEQUENCE 2: JEV FIRST vs LLM SECOND                      
+==============================================================================
+Metric                           | jev.py (1st)         | llm.py (2nd)        
+------------------------------------------------------------------------------
+Model / API Endpoint             | ~typesafe/jev-latest | nvidia/nemotron-3.5-lightning:free
+Total Elapsed Time               | 9.187 s              | 136.935 s           
+Mean Latency / Doc               | 0.765 s              | 11.411 s            
+Median Latency / Doc             | 0.737 s              | 6.773 s             
+Min Latency                      | 0.627 s              | 2.541 s             
+Max Latency                      | 1.180 s              | 44.211 s            
+Latency Std Dev                  | 0.168 s              | 12.148 s            
+Throughput                       | 1.31 docs/sec        | 0.09 docs/sec       
+Classification Accuracy          | 100.0%               | 100.0%              
+==============================================================================
+
+==========================================================================================
+                   PER-FILE HEAD-TO-HEAD COMPARISON (STEADY-STATE WARM)                   
+==========================================================================================
+Filename                   | Ground Truth | LLM Pred    | LLM Time  | JEV Pred    | JEV Time  | Faster Engine
+------------------------------------------------------------------------------------------
+appendix_notes_c.docx      | Finance      | Finance     |  7.897s   | Finance     |  1.180s   | JEV (+569%)
+archive_entry_04.docx      | Education    | Education   | 22.194s   | Education   |  0.629s   | JEV (+3429%)
+briefing_packet_09.pdf     | Law          | Law         |  1.683s   | Law         |  0.632s   | JEV (+166%)
+dossier_part_4.pdf         | Technology   | Technology  | 43.920s   | Technology  |  0.853s   | JEV (+5052%)
+field_observation_14.txt   | Education    | Education   |  6.503s   | Education   |  0.627s   | JEV (+937%)
+internal_memo_402.pdf      | Finance      | Finance     |  7.374s   | Finance     |  0.837s   | JEV (+781%)
+metrics_packet_88.txt      | Finance      | Finance     | 24.590s   | Finance     |  0.838s   | JEV (+2835%)
+project_nexus_v1.docx      | Technology   | Technology  |  2.520s   | Technology  |  0.844s   | JEV (+199%)
+record_log_771.txt         | Technology   | Technology  |  1.264s   | Technology  |  0.633s   | JEV (+100%)
+section_b_draft.txt        | Law          | Law         |  5.282s   | Law         |  0.844s   | JEV (+525%)
+status_review_nov.pdf      | Education    | Education   |  3.775s   | Education   |  0.636s   | JEV (+493%)
+summary_digest_05.docx     | Law          | Law         |  1.677s   | Law         |  0.632s   | JEV (+165%)
+==========================================================================================
+
+==============================================================================
+                    STEADY-STATE WARMED COMPARISON SUMMARY                    
+==============================================================================
+1. STEADY-STATE LATENCY (EXCLUDING WARMUP):
+   - Average Jev Total Time: 10.795 s (Average: 0.900 s / doc)
+   - Average LLM Total Time: 132.808 s (Average: 11.067 s / doc)
+   - Overall Speed Winner  : jev.py (12.30x faster on average)
+
+2. WARMED SEQUENCE DELTA (Impact of Order After Warmup):
+   - llm.py difference between 1st and 2nd run: +8.255 s (+6.4%)
+   - jev.py difference between 1st and 2nd run: +3.216 s (+35.0%)
+   -> Notice that with pre-warming and persistent sessions, the sequence variance is stabilized.
+
+3. ACCURACY:
+   - jev.py Accuracy: 100.0% (12/12)
+   - llm.py Accuracy: 100.0% (12/12)
+==============================================================================
+"""

@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 
 API_URL = "https://openrouter.ai/api/alpha/decisions"
-API_KEY = ""
+API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 MODEL = "~typesafe/jev-latest"
 
 SESSION = requests.Session()

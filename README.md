@@ -80,14 +80,14 @@ Demo/
 
 ## 🏷️ Dataset & Ground Truth
 
-The project includes 12 multi-format test documents categorized across 4 distinct domains:
+The project includes 24 multi-format test documents (including 12 comprehensive lengthy files) categorized across 4 distinct domains:
 
-| Category | Description | Benchmark Files |
-| :--- | :--- | :--- |
-| **Education** | Curriculum, pedagogy, syllabus, and academic studies | `archive_entry_04.docx`, `status_review_nov.pdf`, `field_observation_14.txt` |
-| **Finance** | Investments, cash flow, EBITDA, working capital, budget | `appendix_notes_c.docx`, `internal_memo_402.pdf`, `metrics_packet_88.txt` |
-| **Law** | Contracts, arbitration clauses, litigation, jurisdiction | `summary_digest_05.docx`, `briefing_packet_09.pdf`, `section_b_draft.txt` |
-| **Technology** | Software architecture, microservices, databases, cloud | `project_nexus_v1.docx`, `dossier_part_4.pdf`, `record_log_771.txt` |
+| Category | Description | Benchmark Files | Lengthy Benchmark Files |
+| :--- | :--- | :--- | :--- |
+| **Education** | Curriculum, pedagogy, syllabus, and academic studies | `archive_entry_04.docx`, `status_review_nov.pdf`, `field_observation_14.txt` | `curriculum_standards_2026.txt`, `faculty_symposium_proceedings.docx`, `pedagogical_assessment_report.pdf` |
+| **Finance** | Investments, cash flow, EBITDA, working capital, budget | `appendix_notes_c.docx`, `internal_memo_402.pdf`, `metrics_packet_88.txt` | `quarterly_treasury_audit.txt`, `consolidated_financial_statement.docx`, `portfolio_risk_disclosure.pdf` |
+| **Law** | Contracts, arbitration clauses, litigation, jurisdiction | `summary_digest_05.docx`, `briefing_packet_09.pdf`, `section_b_draft.txt` | `appellate_brief_in_re_tech.txt`, `master_services_agreement.docx`, `statutory_compliance_filing.pdf` |
+| **Technology** | Software architecture, microservices, databases, cloud | `project_nexus_v1.docx`, `dossier_part_4.pdf`, `record_log_771.txt` | `distributed_systems_architecture.txt`, `cloud_infrastructure_blueprint.docx`, `cybersecurity_threat_model.pdf` |
 
 ---
 
