@@ -6,8 +6,20 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
 
+def _load_api_key() -> str:
+    env_file = Path(__file__).resolve().parent / ".env"
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line.startswith("OPENROUTER_API_KEY="):
+                val = line.split("=", 1)[1].strip().strip('"').strip("'")
+                if val:
+                    return val
+    return os.getenv("OPENROUTER_API_KEY", "").strip()
+
+
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
-API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+API_KEY = _load_api_key()
 MODEL = "nvidia/nemotron-3.5-lightning:free"
 FALLBACK_MODEL = "nvidia/nemotron-3.5-lightning"
 

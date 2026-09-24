@@ -125,20 +125,16 @@ uv sync
 
 The project intentionally keeps dependencies lightweight:
 ```bash
-pip install requests
+pip install requests reportlab
 ```
 
 ### 4. Configure API Keys
 
-Ensure your OpenRouter API key is configured inside `jev.py` and `llm.py`:
-```python
-API_KEY = "your-openrouter-api-key"
+Ensure your OpenRouter API key is configured inside `.env` (gitignored) or set in your environment:
+```bash
+# In .env or shell environment
+OPENROUTER_API_KEY="your-openrouter-api-key"
 ```
-
-> **Security Note:** In production setups, it is recommended to read the API key from an environment variable:
-> ```python
-> API_KEY = os.getenv("OPENROUTER_API_KEY", "")
-> ```
 
 ---
 
@@ -146,7 +142,7 @@ API_KEY = "your-openrouter-api-key"
 
 ### 1. Performance Benchmark (`main.py`)
 
-Runs the full comparative benchmark between `jev.py` and `llm.py` across all files in `Unorganised Folder`:
+Runs the full comparative benchmark between `jev.py` and `llm.py` across all 24 multi-format files in `Unorganised Folder`:
 
 ```bash
 python main.py
@@ -154,10 +150,10 @@ python main.py
 
 **What it does:**
 - Runs network warmup (TCP handshake + TLS session initiation + worker warmup).
-- Executes Sequence 1: `llm.py` first, then `jev.py`.
-- Executes Sequence 2: `jev.py` first, then `llm.py`.
+- Evaluates both classification engines across the **Initial Files (12)**, **Lengthy Files (12)**, and **Combined Files (24)**.
 - Computes mean, median, min, max, standard deviation, throughput, and accuracy.
-- Displays a head-to-head per-file latency breakdown.
+- Displays the **Combined Results First Table** followed by **Individual Tables** and per-file latency breakdowns.
+- Automatically generates an executive PDF benchmark report: `result.pdf`.
 
 ---
 
